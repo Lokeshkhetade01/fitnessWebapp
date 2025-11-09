@@ -1,6 +1,39 @@
+import { useState } from "react";
 import Navbar from "./Navbar";
-import '../index.css';
+import "../index.css";
+
 const Contact = () => {
+  // ✅ State to store form data
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  // ✅ Handle input change
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  // ✅ Handle form submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Message Sent Successfully!");
+
+    // ✅ Clear all fields after submit
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+  };
+
   return (
     <>
       <div className="bg-black min-vh-100">
@@ -12,7 +45,8 @@ const Contact = () => {
                 <h2 className="text-center mb-4 fw-bold text-light">
                   Contact Us
                 </h2>
-                <form>
+
+                <form onSubmit={handleSubmit}>
                   {/* Name */}
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label fw-semibold">
@@ -23,6 +57,8 @@ const Contact = () => {
                       className="form-control bg-transparent text-white border border-light"
                       id="name"
                       placeholder="Enter your name"
+                      value={formData.name}
+                      onChange={handleChange}
                       required
                     />
                   </div>
@@ -37,6 +73,8 @@ const Contact = () => {
                       className="form-control bg-transparent text-white border border-light"
                       id="email"
                       placeholder="Enter your email"
+                      value={formData.email}
+                      onChange={handleChange}
                       required
                     />
                   </div>
@@ -51,6 +89,8 @@ const Contact = () => {
                       className="form-control bg-transparent text-white border border-light"
                       id="phone"
                       placeholder="Enter your phone"
+                      value={formData.phone}
+                      onChange={handleChange}
                       required
                     />
                   </div>
@@ -65,15 +105,15 @@ const Contact = () => {
                       id="message"
                       rows="4"
                       placeholder="Write your message..."
+                      value={formData.message}
+                      onChange={handleChange}
                       required
                     ></textarea>
                   </div>
 
                   {/* Submit Button */}
                   <div className="d-grid">
-                    <button type="submit" className="btn btn-warning fw-bold" onClick={()=>{
-                      return alert("Register Successfull!")
-                    }}>
+                    <button type="submit" className="btn btn-warning fw-bold">
                       Send Message
                     </button>
                   </div>
@@ -88,4 +128,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
