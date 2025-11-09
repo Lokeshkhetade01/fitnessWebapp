@@ -71,7 +71,9 @@ const Contact = () => {
 
                   {/* Submit Button */}
                   <div className="d-grid">
-                    <button type="submit" className="btn btn-warning fw-bold">
+                    <button type="submit" className="btn btn-warning fw-bold" onClick={()=>{
+                      return alert("Register Successfull!")
+                    }}>
                       Send Message
                     </button>
                   </div>
